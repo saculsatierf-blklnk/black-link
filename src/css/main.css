@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos para a animação de fade-in das seções */
+.fade-in-section {
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(30px);
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos do Lightbox (Pop-up) */
+#lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* NOVAS CLASSES UTILITÁRIAS PARA SOMBRA DE TEXTO */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 1px 1px 3px rgb(0 0 0 / 0.4);
+  }
+  .text-shadow-md {
+    text-shadow: 2px 2px 5px rgb(0 0 0 / 0.5);
+  }
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgb(0 0 0 / 0.5);
+  }
+}
+
+.bg-hero-viagem {
+    background-image: url('/images/hero-florianopolis.jpg');
+}

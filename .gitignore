@@ -1,0 +1,21 @@
+# Dependências
+/node_modules
+
+# Pasta de build
+/dist
+
+# Arquivos de log e cache
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Metadados de IDEs
+.vscode/
+.idea/

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Preços Interativa - Urbano Patriarca (SP)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="/src/js/calculadora.js"></script>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-4xl mx-auto p-4 md:p-6">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">Urbano Patriarca</h1>
+            <p class="text-gray-600 mt-2 text-lg">Simulador Interativo | Metrô Patriarca - São Paulo</p>
+        </div>
+
+        <div class="card">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">1. Qual seu perfil de compra?</h2>
+            <div id="priceType-group" class="grid grid-cols-1 md:grid-cols-2 gap-4 btn-group">
+                <button data-value="padrao" class="w-full text-left p-4 rounded-lg active">
+                    <span class="font-bold text-lg">Padrão</span>
+                    <p class="text-sm">Para morar ou investir a longo prazo.</p>
+                </button>
+                <button data-value="investidor" class="w-full text-left p-4 rounded-lg">
+                     <span class="font-bold text-lg">Investidor</span>
+                     <p class="text-sm">Condições especiais para investidores.</p>
+                </button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">2. Escolha o seu apartamento</h2>
+            <div class="mb-6">
+                <label class="font-medium text-gray-600">Área (m²)</label>
+                <div id="area-group" class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2 btn-group">
+                    <button data-value="22" class="p-3 rounded-md active">22 m²</button>
+                    <button data-value="48" class="p-3 rounded-md">48 m²</button>
+                    <button data-value="59" class="p-3 rounded-md">59 m²</button>
+                    <button data-value="80" class="p-3 rounded-md">80 m²</button>
+                </div>
+            </div>
+            <div class="mb-6">
+                 <label class="font-medium text-gray-600">Andar</label>
+                 <div id="floor-group" class="grid grid-cols-4 md-grid-cols-7 gap-2 mt-2 btn-group">
+                    </div>
+            </div>
+             <div class="flex items-center mt-6">
+                <input id="garage" name="garage" type="checkbox" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                <label for="garage" class="ml-3 text-sm font-medium text-gray-700">Adicionar Vaga de Garagem (+ R$ 30.000,00)</label>
+            </div>
+            <div class="mt-6">
+                <label class="font-medium text-gray-600">Acabamento do Apartamento</label>
+                <div id="finish-group" class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2 btn-group">
+                    <button data-value="padrao" data-price-per-sqm="0" class="p-3 rounded-md active">Padrão</button>
+                    <button data-value="mobiliado" data-price-per-sqm="1000" class="p-3 rounded-md">Mobiliado</button>
+                    <button data-value="decorado" data-price-per-sqm="1800" class="p-3 rounded-md">Decorado e Equipado</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-gray-800 text-black">
+     <h2 class="text-lg font-medium text-center">Valor Total do Imóvel</h2>
+     <p id="totalPrice" class="text-5xl font-bold text-center mt-2 total-price">R$ 0,00</p>
+</div>
+
+        <div id="paymentDetails" class="mt-6">
+            <div id="padrao-details">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Plano de Pagamento - Padrão</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+                        <div class="bg-gray-100 p-4 rounded-lg"><div class="text-sm text-gray-500">Entrada</div><div id="padrao-sinal" class="text-lg font-bold text-gray-800"></div></div>
+                        <div class="bg-gray-100 p-4 rounded-lg"><div class="text-sm text-gray-500">Durante a Obra</div><div id="padrao-obra" class="text-lg font-bold text-gray-800"></div></div>
+                        <div class="bg-gray-100 p-4 rounded-lg"><div class="text-sm text-gray-500">Entrega das Chaves</div><div id="padrao-chaves" class="text-lg font-bold text-gray-800"></div></div>
+                        <div class="bg-indigo-100 p-4 rounded-lg"><div class="text-sm text-indigo-800">Saldo a Financiar</div><div id="padrao-saldo" class="text-lg font-bold text-indigo-800"></div></div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t">
+                        <h4 class="text-lg font-semibold text-gray-700 mb-3 text-center">Parcelamento do Valor "Durante a Obra"</h4>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                            <div id="obra-term-group" class="btn-group flex rounded-lg p-1 bg-gray-100">
+                                <button data-term="12" class="px-4 py-2 text-sm rounded-md active">12 meses</button>
+                                <button data-term="18" class="px-4 py-2 text-sm rounded-md">18 meses</button>
+                                <button data-term="24" class="px-4 py-2 text-sm rounded-md">24 meses</button>
+                            </div>
+                            <div id="obra-installment-display" class="text-lg font-bold text-gray-800 p-2 rounded-lg bg-gray-50"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t">
+                        <div>
+                             <h4 class="text-lg font-semibold text-gray-700 mb-3 text-center">Financiamento Comparativo do Saldo</h4>
+                             <p class="text-center text-gray-500 text-xs mb-3 -mt-2">Clique em uma linha para atualizar a análise de viabilidade.</p>
+                             <div class="overflow-x-auto bg-white rounded-lg border">
+                                <table id="padrao-financiamento" class="min-w-full text-center fin-table"></table>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3 text-center">Condições de Financiamento</h4>
+                            <div class="bg-gray-50 rounded-lg p-6 text-center h-full flex flex-col justify-center">
+                                 <div class="mb-4">
+                                     <p class="text-gray-600">Taxa de Juros (Corrigida)</p>
+                                     <p class="font-bold text-indigo-600 text-2xl">0,8% ao mês</p>
+                                 </div>
+                                 <div>
+                                     <p class="text-gray-600">Sistema de Amortização</p>
+                                     <p class="font-bold text-indigo-600 text-2xl">Tabela Price</p>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div id="padrao-rental-analysis" class="card">
+                    </div>
+            </div>
+
+            <div id="investidor-details" class="hidden">
+                 <div class="card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Plano de Pagamento - Investidor</h3>
+                     <div class="overflow-x-auto bg-white rounded-lg border">
+                        <table id="investidor-financiamento" class="min-w-full text-center fin-table"></table>
+                    </div>
+                 </div>
+                 <div class="card">
+                     <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Projeção de Ganho do Investidor (Valorização)</h3>
+                     <p class="text-center text-gray-600 text-sm mb-4">Estimativa com base na valorização média de mercado para imóveis na planta em um período de 24 meses (prazo de obra).</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                        <div class="bg-gray-100 p-4 rounded-lg"><div class="text-sm text-gray-500">Valor de Compra (Investidor)</div><div id="investidor-compra" class="text-lg font-bold text-gray-800"></div></div>
+                        <div class="bg-gray-100 p-4 rounded-lg"><div class="text-sm text-gray-500">Valor Estimado na Entrega</div><div id="investidor-entrega" class="text-lg font-bold text-gray-800"></div></div>
+                        <div class="bg-emerald-100 p-4 rounded-lg"><div class="text-sm text-emerald-800">Potencial de Lucro (R$)</div><div id="investidor-lucro" class="text-lg font-bold text-emerald-800"></div></div>
+                        <div class="bg-emerald-100 p-4 rounded-lg"><div class="text-sm text-emerald-800">Rentabilidade Potencial (%)</div><div id="investidor-rentabilidade" class="text-lg font-bold text-emerald-800"></div></div>
+                     </div>
+                 </div>
+                 <div id="investor-rental-analysis" class="card">
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

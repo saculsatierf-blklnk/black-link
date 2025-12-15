@@ -1,0 +1,10 @@
+# Arquivo de Configuração para o Netlify
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# A seção abaixo força o Netlify a usar a versão 20 do Node.js.
+# Este é o passo crítico que resolve a falha de compilação do CSS.
+[build.environment]
+  NODE_VERSION = "20"

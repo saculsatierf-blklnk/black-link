@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BLACK LINK | PH7 Launch</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void': '#030303',
+                        'platinum': '#E5E4E2',
+                        'gold-dust': '#C5A059',
+                    },
+                    fontFamily: {
+                        'serif': ['"Cinzel"', 'serif'],
+                        'sans': ['"Manrope"', 'sans-serif'],
+                    },
+                    cursor: { 'none': 'none' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ESTILOS GERAIS */
+        body { background-color: #030303; color: #E5E4E2; overflow-x: hidden; cursor: none; }
+        
+        /* PRELOADER */
+        #preloader {
+            position: fixed; inset: 0; background-color: #030303; z-index: 99999;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .counter { font-family: 'Cinzel', serif; font-size: 8vw; color: #C5A059; }
+
+        #canvas-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            opacity: 0.4; pointer-events: none;
+        }
+
+        /* CURSOR */
+        .cursor-main {
+            width: 10px; height: 10px; background: #C5A059; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 10000; mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s;
+        }
+        .cursor-follower {
+            width: 50px; height: 50px; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transition: transform 0.1s;
+        }
+
+        /* EQUALIZADOR DE ÁUDIO */
+        .bar { width: 3px; background-color: #C5A059; margin: 0 1px; animation: equalize 1s infinite alternate; }
+        .bar:nth-child(1) { height: 10px; animation-delay: -0.5s; }
+        .bar:nth-child(2) { height: 15px; animation-delay: -1s; }
+        .bar:nth-child(3) { height: 8px; animation-delay: -0.2s; }
+        .bar:nth-child(4) { height: 12px; animation-delay: -0.7s; }
+        @keyframes equalize { 0% { height: 5px; } 100% { height: 20px; } }
+        .paused .bar { animation-play-state: paused; height: 2px !important; }
+
+        ::-webkit-scrollbar { width: 0px; }
+        .skew-elem { will-change: transform; }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-gold-dust selection:text-void overflow-hidden">
+
+    <div id="preloader">
+        <span class="counter">0%</span>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="beat.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="audio-control" class="fixed bottom-8 right-8 z-[100] flex items-center gap-3 cursor-none mix-blend-difference magnetic-trigger">
+        <span id="audio-text" class="font-sans text-[10px] uppercase tracking-widest text-platinum">SOUND :: OFF</span>
+        <div id="equalizer" class="flex items-end h-5 paused">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+    </div>
+
+    <canvas id="canvas-container"></canvas>
+    <div class="cursor-main"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="fixed w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-exclusion pointer-events-none">
+        <a href="#" class="font-serif text-xl tracking-[0.2em] text-platinum pointer-events-auto">BLACK LINK.</a>
+        <a href="https://www.instagram.com/blacklink.co" target="_blank" class="text-[10px] uppercase tracking-[0.3em] font-sans border border-white/20 px-6 py-3 rounded-full hover:bg-gold-dust hover:text-void transition-all duration-500 pointer-events-auto">
+            Launch Protocol
+        </a>
+    </nav>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden border-b border-white/5">
+                <div class="absolute inset-0 z-0">
+                    <img src="hero.jpg" class="w-full h-full object-cover opacity-50 scale-110" data-speed="0.5" alt="PH7 Atmosphere">
+                    <div class="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void"></div>
+                </div>
+
+                <div class="relative z-10 text-center skew-elem">
+                    <div class="overflow-hidden mb-2">
+                        <p class="font-sans text-platinum text-sm md:text-base uppercase tracking-[0.4em] animate-text-reveal border border-white/10 inline-block px-4 py-1 rounded-full bg-void/50 backdrop-blur-sm">
+                            20.12.2025
+                        </p>
+                    </div>
+                    <div class="overflow-hidden mb-4">
+                        <p class="font-sans text-gold-dust text-xs uppercase tracking-[0.6em] animate-text-reveal">PRE_SAVE :: NOW</p>
+                    </div>
+                    <h1 class="font-serif text-[15vw] leading-[0.8] text-platinum mix-blend-overlay uppercase tracking-tighter">
+                        <div class="overflow-hidden"><span class="block animate-title-up">PH-VZ1</span></div>
+                        <div class="overflow-hidden"><span class="block animate-title-up italic text-gold-dust font-light text-[5vw] tracking-normal mt-4">PH7 feat. Kauan Costa</span></div>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="py-40 px-6 md:px-20 bg-void relative z-10 flex items-center justify-center min-h-[50vh]">
+                <p class="font-serif text-2xl md:text-5xl leading-[1.3] text-zinc-500 max-w-6xl mx-auto skew-elem reveal-type text-center">
+                    "A tensão sonora não é um movimento no espaço, mas uma <span class="text-platinum">expansão do espírito</span>."
+                </p>
+            </section>
+
+            <section class="relative h-screen w-full flex items-center justify-center overflow-hidden border-y border-white/5 group">
+                <div class="absolute inset-0 z-0">
+                    <video autoplay muted loop playsinline poster="capa.png" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.3">
+                        <source src="teaser1.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-void/20"></div>
+                </div>
+                <div class="relative z-10 text-center mix-blend-overlay">
+                    <h2 class="font-serif text-[10vw] text-platinum leading-none tracking-tighter skew-elem">ATMOSFERA</h2>
+                    <p class="font-sans text-xs text-gold-dust uppercase tracking-[1em] mt-4">Raw_Material_01</p>
+                </div>
+            </section>
+
+            <section class="relative h-[100vh] w-full flex flex-col justify-center items-center bg-void z-10 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="capa.png" class="w-full h-full object-cover opacity-60 scale-110 blur-sm" data-speed="0.4" alt="Capa Background">
+                    <div class="absolute inset-0 bg-black/70"></div>
+                </div>
+                <div class="relative z-10 text-center">
+                    <a href="https://distrokid.com/hyperfollow/ph72/ph-vz1-feat-kauan-costa" target="_blank" 
+                       class="magnetic-trigger group relative flex flex-col items-center justify-center cursor-none p-12 md:p-24">
+                        <div class="absolute inset-0 bg-gold-dust blur-[100px] opacity-0 group-hover:opacity-30 transition-opacity duration-700 rounded-full"></div>
+                        <h2 class="font-serif text-[12vw] leading-none text-platinum group-hover:text-gold-dust transition-colors duration-500 mix-blend-overlay">PRE-SAVE</h2>
+                        <div class="mt-10 flex items-center gap-3 border border-white/30 px-8 py-3 rounded-full group-hover:bg-gold-dust group-hover:border-gold-dust group-hover:text-void transition-all duration-500 bg-black/50 backdrop-blur-md">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            <span class="text-xs uppercase tracking-widest font-sans font-bold">Acessar Distrokid</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="relative h-screen w-full flex items-center justify-center overflow-hidden border-t border-white/5 group">
+                <div class="absolute inset-0 z-0">
+                    <video autoplay muted loop playsinline poster="capa.png" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.2">
+                        <source src="teaser2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="relative z-10 text-center">
+                    <h2 class="font-serif text-[8vw] text-transparent stroke-text leading-none tracking-tighter skew-elem" style="-webkit-text-stroke: 1px #E5E4E2;">POTÊNCIA</h2>
+                </div>
+            </section>
+
+            <footer class="bg-zinc-950 py-10 px-6 md:px-20 border-t border-white/10 relative z-10">
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="font-serif text-xl text-platinum">BLACK LINK.</p>
+                        <p class="font-sans text-[10px] text-gray-500 uppercase tracking-widest mt-1">© 2025</p>
+                    </div>
+                    <div class="text-right">
+                        <a href="https://wa.me/5511988053899" class="text-[10px] uppercase text-gray-500 hover:text-white transition-colors cursor-none">Contato</a>
+                    </div>
+                </div>
+            </footer>
+        </div> 
+    </div> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        // --- 0. PRELOADER LOGIC ---
+        function startLoader() {
+            let counterElement = document.querySelector(".counter");
+            let currentValue = 0;
+            
+            function updateCounter() {
+                if (currentValue === 100) {
+                    gsap.to(".counter", { opacity: 0, duration: 0.5 });
+                    gsap.to("#preloader", {
+                        y: "-100%",
+                        duration: 1.5,
+                        ease: "power4.inOut",
+                        delay: 0.5,
+                        onComplete: () => {
+                            document.body.style.overflow = "auto"; 
+                            gsap.from(".animate-title-up", {y: "100%", duration: 1.5, ease: "power4.out", stagger: 0.2});
+                            gsap.from(".animate-text-reveal", {y: 20, opacity: 0, duration: 1, delay: 0.5});
+                        }
+                    });
+                    return;
+                }
+                currentValue += Math.floor(Math.random() * 10) + 1;
+                if (currentValue > 100) currentValue = 100;
+                counterElement.textContent = currentValue + "%";
+                setTimeout(updateCounter, Math.floor(Math.random() * 200) + 50);
+            }
+            updateCounter();
+        }
+        window.addEventListener("load", startLoader);
+
+        // --- 1. LÓGICA DE ÁUDIO ---
+        const audio = document.getElementById('bg-music');
+        const audioControl = document.getElementById('audio-control');
+        const audioText = document.getElementById('audio-text');
+        const equalizer = document.getElementById('equalizer');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    audioText.innerText = "SOUND :: ON";
+                    audioText.style.color = "#C5A059";
+                    equalizer.classList.remove('paused');
+                    isPlaying = true;
+                }).catch(e => console.error("Erro ao tocar áudio (interação necessária ou arquivo 404):", e));
+            } else {
+                audio.pause();
+                audioText.innerText = "SOUND :: OFF";
+                audioText.style.color = "#E5E4E2";
+                equalizer.classList.add('paused');
+                isPlaying = false;
+            }
+        }
+
+        // Botão de controle manual
+        audioControl.addEventListener('click', toggleAudio);
+
+        // Tenta tocar no primeiro clique na tela (OBRIGATÓRIO PARA NAVEGADORES)
+        window.addEventListener('click', () => {
+            if (!isPlaying) {
+                toggleAudio();
+            }
+        }, { once: true });
+
+        // --- 2. SCROLL SUAVE (Lenis) ---
+        const lenis = new Lenis({ duration: 1.5, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // --- 3. PARTICULAS (Canvas) ---
+        const canvas = document.getElementById('canvas-container');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = window.innerWidth; h = window.innerHeight; canvas.width = w; canvas.height = h; }
+        window.addEventListener('resize', resize); resize();
+        for(let i=0; i<80; i++) particles.push({x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2, size: Math.random()*1.5, alpha: Math.random()*0.4});
+        function animateCanvas() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0) p.x = w; if(p.x > w) p.x = 0;
+                if(p.y < 0) p.y = h; if(p.y > h) p.y = 0;
+                ctx.fillStyle = `rgba(197, 160, 89, ${p.alpha})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // --- 4. CURSOR ---
+        const cursorMain = document.querySelector('.cursor-main');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const magnetics = document.querySelectorAll('.magnetic-trigger');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+        
+        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; gsap.to(cursorMain, {x: mouseX-5, y: mouseY-5, duration: 0}); });
+        function animateCursor() { followerX += (mouseX - followerX)*0.1; followerY += (mouseY - followerY)*0.1; gsap.set(cursorFollower, {x: followerX-25, y: followerY-25}); requestAnimationFrame(animateCursor); }
+        animateCursor();
+
+        magnetics.forEach(el => {
+            el.addEventListener('mouseenter', () => { gsap.to(cursorFollower, {scale: 1.5, borderColor: '#C5A059', duration: 0.3}); gsap.to(cursorMain, {scale: 0}); });
+            el.addEventListener('mouseleave', () => { gsap.to(cursorFollower, {scale: 1, borderColor: 'rgba(197,160,89,0.3)', duration: 0.3}); gsap.to(cursorMain, {scale: 1}); });
+        });
+
+        // --- 5. ANIMAÇÕES GSAP ---
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('[data-speed]').forEach(el => {
+            gsap.to(el, {
+                yPercent: -20 * parseFloat(el.dataset.speed),
+                ease: "none",
+                scrollTrigger: { trigger: el.parentElement, start: "top bottom", scrub: true }
+            });
+        });
+        let proxy = { skew: 0 }, skewSetter = gsap.quickSetter(".skew-elem", "skewY", "deg"), clamp = gsap.utils.clamp(-20, 20);
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                let skew = clamp(self.getVelocity() / -300);
+                if (Math.abs(skew) > Math.abs(proxy.skew)) {
+                    proxy.skew = skew;
+                    gsap.to(proxy, {skew: 0, duration: 0.8, ease: "power3", overwrite: true, onUpdate: () => skewSetter(proxy.skew)});
+                }
+            }
+        });
+    </script>
+</body>
+</html>
