@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@200;300;400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -22,6 +22,8 @@
                     fontFamily: {
                         'serif': ['"Cinzel"', 'serif'],
                         'sans': ['"Manrope"', 'sans-serif'],
+                        // Montserrat mantida aqui, mas não usada nos títulos finais
+                        'montserrat': ['"Montserrat"', 'sans-serif'], 
                     },
                     cursor: { 'none': 'none' }
                 }
@@ -94,8 +96,8 @@
 
     <nav class="fixed w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-exclusion pointer-events-none">
         <a href="#" class="font-serif text-xl tracking-[0.2em] text-platinum pointer-events-auto">BLACK LINK.</a>
-        <a href="https://www.instagram.com/blacklink.co" target="_blank" class="text-[10px] uppercase tracking-[0.3em] font-sans border border-white/20 px-6 py-3 rounded-full hover:bg-gold-dust hover:text-void transition-all duration-500 pointer-events-auto">
-            Launch Protocol
+        <a href="https://www.instagram.com/blacklink.com.br?igsh=ZXUyOGljZjFkbHB1" target="_blank" class="text-[10px] uppercase tracking-[0.3em] font-sans border border-white/20 px-6 py-3 rounded-full hover:bg-gold-dust hover:text-void transition-all duration-500 pointer-events-auto">
+            QUEM SOMOS
         </a>
     </nav>
 
@@ -132,14 +134,14 @@
 
             <section class="relative h-screen w-full flex items-center justify-center overflow-hidden border-y border-white/5 group">
                 <div class="absolute inset-0 z-0">
-                    <video autoplay muted loop playsinline poster="capa.png" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.3">
+                    <video autoplay muted loop playsinline poster="capa.png" preload="metadata" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.3">
                         <source src="teaser1.mp4" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-void/20"></div>
                 </div>
                 <div class="relative z-10 text-center mix-blend-overlay">
-                    <h2 class="font-serif text-[10vw] text-platinum leading-none tracking-tighter skew-elem">ATMOSFERA</h2>
-                    <p class="font-sans text-xs text-gold-dust uppercase tracking-[1em] mt-4">Raw_Material_01</p>
+                    <h2 class="font-serif text-[10vw] text-platinum leading-none tracking-tighter skew-elem">ORIGEM</h2>
+                    <p class="font-sans text-xs text-gold-dust uppercase tracking-[1em] mt-4">ANTES DA PRESSA, VEIO O PENSAMENTO</p>
                 </div>
             </section>
 
@@ -163,12 +165,13 @@
 
             <section class="relative h-screen w-full flex items-center justify-center overflow-hidden border-t border-white/5 group">
                 <div class="absolute inset-0 z-0">
-                    <video autoplay muted loop playsinline poster="capa.png" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.2">
+                    <video autoplay muted loop playsinline poster="capa.png" preload="metadata" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 transition-opacity duration-1000 scale-105" data-speed="0.2">
                         <source src="teaser2.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="relative z-10 text-center">
-                    <h2 class="font-serif text-[8vw] text-transparent stroke-text leading-none tracking-tighter skew-elem" style="-webkit-text-stroke: 1px #E5E4E2;">POTÊNCIA</h2>
+                    <h2 class="font-serif text-[10vw] text-platinum leading-none tracking-tighter skew-elem">LEVANTE</h2>
+                    <p class="font-sans text-xs text-gold-dust uppercase tracking-[1em] mt-4">SONHO NÃO ACORDA SOZINHO</p>
                 </div>
             </section>
 
@@ -245,10 +248,8 @@
             }
         }
 
-        // Botão de controle manual
         audioControl.addEventListener('click', toggleAudio);
 
-        // Tenta tocar no primeiro clique na tela (OBRIGATÓRIO PARA NAVEGADORES)
         window.addEventListener('click', () => {
             if (!isPlaying) {
                 toggleAudio();
